@@ -13,6 +13,7 @@ public class CheeseDecorator extends PizzaDecorator{
 
 	@Override
 	public double getCost() {
+		System.out.println("Inside CheeseDecorator ");
 		return pizza.getCost() + 99;
 	}
 

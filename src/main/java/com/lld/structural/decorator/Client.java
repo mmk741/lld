@@ -7,7 +7,7 @@ public class Client {
 		vegPizza = new CheeseDecorator(vegPizza);
 		vegPizza = new BellPepperDecorator(vegPizza);
 		
-		System.out.println(vegPizza.getDescription());
+//		System.out.println(vegPizza.getDescription());
 		System.out.println(vegPizza.getCost());
 	
 	}

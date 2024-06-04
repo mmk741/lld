@@ -11,6 +11,7 @@ public class VegPizza implements Pizza {
 
 	@Override
 	public double getCost() {
+		System.out.println("Inside VegPizza ");
 		return 399.0;
 	}
 

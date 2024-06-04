@@ -13,6 +13,7 @@ public class BellPepperDecorator extends PizzaDecorator{
 
 	@Override
 	public double getCost() {
+		System.out.println("Inside BellPepperDecorator  ");
 		return pizza.getCost() + 199;
 	}
 
