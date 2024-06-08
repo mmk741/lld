@@ -21,6 +21,7 @@ public class StockRoomPoolDemo {
     }
 
     public static void main(String[] args) {
+       //setting up stockroomPool
         StockRoomPoolDemo demo = new StockRoomPoolDemo();
         demo.setUp(5);
 

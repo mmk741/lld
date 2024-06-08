@@ -4,6 +4,7 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 
 public abstract class ObjectPool<T> {
 
+    //ensures that multiple threads can borrow and return objects from the pool concurrently without any risk of data corruption
     private ConcurrentLinkedQueue<T> pool;
 
     public ObjectPool(int size) {

@@ -1,7 +1,7 @@
 package com.lld.structural.bridge;
 
 
-// abstraction in bridge pattern
+// abstraction in bridge pattern i.e abstract class
 abstract class Vehicle {
 
     //instead of implementing abstract method for thi we take it as object as now it can grow independently

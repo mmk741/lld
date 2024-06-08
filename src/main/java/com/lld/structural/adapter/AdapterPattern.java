@@ -27,6 +27,7 @@ public class AdapterPattern {
     }
 }
 
+//client
  interface Product {
 
     String getName();
@@ -94,7 +95,7 @@ class FitnessProduct implements Product {
     }
 }
 
-//third-party code
+//third-party code need to adjust with shopInventory// existing interface
 class GroceryItem {
 
     private String itemName;
@@ -124,7 +125,7 @@ class GroceryItem {
 
 }
 
-//adapter to connect third party code
+//adapter to connect third party code it have all method which is used by product
 class GroceryItemAdapter implements Product {
 
     private GroceryItem groceryItem;

@@ -2,7 +2,7 @@ package com.lld.creational.singelton;
 
 public class Singelton {
     public static void main(String[] args) {
-
+        SynchronizedMethodSingelton obj=SynchronizedMethodSingelton.getInstance();
     }
 }
 
@@ -51,7 +51,7 @@ class SynchronizedMethodSingelton {
 
 class DoubleLockingSingelton {
 
-    //volatile is used here as while its craeation it directly write into memory and not cache of cores of cpu as each core has its cache
+    //volatile is used here as while  craeating it directly write into memory and not cache of cores of cpu as each core has its cache
     private static volatile DoubleLockingSingelton instance;
     private DoubleLockingSingelton(){
 
