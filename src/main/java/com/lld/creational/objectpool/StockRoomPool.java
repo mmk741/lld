@@ -2,10 +2,25 @@ package com.lld.creational.objectpool;
 
 public class StockRoomPool extends ObjectPool<StockRoom>{
 
+   private static  StockRoomPool instance;
+
+
+
     private int stockNumber = 1234;
 
-    public StockRoomPool(int size) {
+    private StockRoomPool(int size) {
         super(size);
+    }
+
+    public static StockRoomPool getInstance(int size) {
+        if (instance == null) {
+            synchronized (StockRoomPool.class) {
+                if (instance == null) {
+                    instance = new StockRoomPool(size);
+                }
+            }
+        }
+        return instance;
     }
 
     @Override

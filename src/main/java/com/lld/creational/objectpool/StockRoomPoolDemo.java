@@ -5,7 +5,7 @@ public class StockRoomPoolDemo {
     ObjectPool<StockRoom> pool;
 
     private void setUp(int size) {
-        pool = new StockRoomPool(size);
+        pool = StockRoomPool.getInstance(size);
     }
 
     private int getSize() {

@@ -17,30 +17,21 @@ public class App {
 //        1. List all distinct project in non-ascending order.
         System.out.println("************************1************************");
 
-        List<Project> project1 = employeeList.stream().flatMap(emp->emp.getProjects().stream()).distinct()
-                .sorted((p1,p2)->p2.getName().length()-p1.getName().length()).collect(Collectors.toList());
-
-
-
-
-
-
-
-
-
-
-
-
-
-        List<Project> project = employeeList.stream().flatMap(x -> x.getProjects().stream()).distinct()
-                .sorted(Comparator.comparing(Project::getName).reversed())
+        List<String> distinctProject = employeeList.stream().flatMap((employee) -> employee.getProjects().stream())
+                .distinct()
+                .sorted((x, y) -> y.getName().compareTo(x.getName()))
+                .map(x->x.getName())
                 .collect(Collectors.toList());
-        project1.forEach(System.out::println);
+        System.out.println("distinct Project name: "+distinctProject);
+
 //        2. Print full name of any employee whose firstName starts with ‘A’.
         System.out.println("************************2************************");
-        List<String>  employeeNAme = employeeList.stream().filter(e -> e.getFirstName().charAt(0) == 'A').
-                map(e -> e.getFirstName() + e.getLastName()).collect(Collectors.toList());
-        employeeNAme.forEach(System.out::println);
+
+
+        List<String> employeeNameStartWithA = employeeList.stream().map(x -> x.getFirstName())
+                .filter(x -> x.charAt(0) == 'A')
+                .collect(Collectors.toList());
+        System.out.println("Employee first name starting with A are :"+employeeNameStartWithA);
 
 
 //

@@ -32,6 +32,7 @@ public  class StreamConcept {
 
         //5(startPoint , IncrementLogic,limit)
         Stream<Integer> streamFromIterator = Stream.iterate(800, (Integer n) -> n + 50).limit(5);
+        streamFromIterator.forEach((x)-> System.out.println("stream from itterator: "+x));
 
 
         //Intermediate operation : it is a lazy operation
