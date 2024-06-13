@@ -1,4 +1,4 @@
-package com.lld.behavorial.visitor;
+package com.lld.behavorial.visitor.example1;
 
 public class Book implements Element{
     private String title;

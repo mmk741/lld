@@ -1,4 +1,4 @@
-package com.lld.behavorial.visitor;
+package com.lld.behavorial.visitor.example1;
 
 public class ShoppingCartVisitor implements Visitor{
     @Override

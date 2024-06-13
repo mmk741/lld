@@ -1,4 +1,4 @@
-package com.lld.behavorial.visitor;
+package com.lld.behavorial.visitor.example1;
 
 public class Fruit implements Element{
     private String name;

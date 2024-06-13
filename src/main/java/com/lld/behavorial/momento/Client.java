@@ -28,6 +28,7 @@ public class Client {
         orignator.restoreMomento(undo);
 
         System.out.println("height: "+orignator.height+" width: "+orignator.width);
+        System.out.println(careTaker.history.size());
 
     }
 
