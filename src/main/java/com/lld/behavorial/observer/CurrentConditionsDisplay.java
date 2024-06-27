@@ -3,7 +3,7 @@ package com.lld.behavorial.observer;
 public class CurrentConditionsDisplay implements Observer {
     private float temperature;
     private float humidity;
-    private Observable weatherData; //if any data this class need from weatherData it can take thas why we keep it here
+    private Observable weatherData; //if any data this class need from weatherData it can take thas why we keep it here also it tells observable to add himself
 
     public CurrentConditionsDisplay(Observable weatherData) {
         this.weatherData = weatherData;

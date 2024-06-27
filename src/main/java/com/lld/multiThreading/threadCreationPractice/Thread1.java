@@ -1,4 +1,4 @@
-package com.lld.multiThreading;
+package com.lld.multiThreading.threadCreationPractice;
 
 public class Thread1 extends Thread{
 

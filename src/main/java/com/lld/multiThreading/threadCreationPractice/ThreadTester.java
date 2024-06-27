@@ -1,4 +1,4 @@
-package com.lld.multiThreading;
+package com.lld.multiThreading.threadCreationPractice;
 
 public class ThreadTester {
     public static void main(String[] args) {

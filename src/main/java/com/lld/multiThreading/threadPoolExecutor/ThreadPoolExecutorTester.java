@@ -1,7 +1,5 @@
-package com.lld.multiThreading;
+package com.lld.multiThreading.threadPoolExecutor;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.concurrent.*;
 
 public class ThreadPoolExecutorTester {
