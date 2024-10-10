@@ -10,10 +10,10 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
-public class Queue {
+public class MessageBroker {
     private final Map<String, TopicHandler> topicHandlers;
 
-    public Queue() {
+    public MessageBroker() {
         this.topicHandlers = new HashMap<>();
     }
 

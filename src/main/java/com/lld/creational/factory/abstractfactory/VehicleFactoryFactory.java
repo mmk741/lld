@@ -1,6 +1,6 @@
 package com.lld.creational.factory.abstractfactory;
 
-public class VehicleFactory {
+public class VehicleFactoryFactory {
 
     public static AbstractFactory getFactory(String name)
     {

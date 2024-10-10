@@ -32,6 +32,7 @@ public class TopicHandler {
         }
 
         final SubscriberWorker subscriberWorker = subscriberWorkers.get(subscriberId);
+        //wakeUpIfNeeded is not rquired as from comment find out why ?
         subscriberWorker.wakeUpIfNeeded();
     }
 }
