@@ -1,6 +1,7 @@
 package com.lld.multiThreading.Executors.CallableFuture;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.*;
 
@@ -8,7 +9,7 @@ import java.util.concurrent.*;
 // and obtain their results as a list of Future objects.
 public class CallableFutureRealWorldProblem {
     public static void main(String[] args) {
-        List<String> symbols = List.of("ABC", "PQR", "TFGF", "YEDS", "PFS");
+        List<String> symbols = Arrays.asList("ABC", "PQR", "TFGF", "YEDS", "PFS");
         List<Future> futures = new ArrayList<>();
 
         ExecutorService executorService = Executors.newFixedThreadPool(1);

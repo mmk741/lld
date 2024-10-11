@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -20,7 +21,7 @@ public class ConcurrentFileReaderWithFuture {
         ExecutorService executor = Executors.newFixedThreadPool(2);
         List<Future<String>> futures = new ArrayList<>();
 
-        List<String> fileNames = List.of("Threads/src/main/resources/file1.txt", "Threads/src/main/resources/file2.txt", "Threads/src/main/resources/file3.txt");
+        List<String> fileNames = Arrays.asList("Threads/src/main/resources/file1.txt", "Threads/src/main/resources/file2.txt", "Threads/src/main/resources/file3.txt");
 
         for (String fileName : fileNames) {
             Future<String> future = executor.submit(() -> readFile(fileName));

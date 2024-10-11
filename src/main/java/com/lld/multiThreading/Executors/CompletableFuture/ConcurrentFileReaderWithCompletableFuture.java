@@ -3,6 +3,7 @@ package com.lld.multiThreading.Executors.CompletableFuture;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 import java.util.stream.Collectors;
@@ -10,7 +11,7 @@ import java.util.stream.Collectors;
 public class ConcurrentFileReaderWithCompletableFuture {
 
     public static void main(String[] args) throws InterruptedException {
-        List<String> fileNames = List.of("Threads/src/main/resources/file1.txt", "Threads/src/main/resources/file2.txt", "Threads/src/main/resources/file3.txt");
+        List<String> fileNames = Arrays.asList("Threads/src/main/resources/file1.txt", "Threads/src/main/resources/file2.txt", "Threads/src/main/resources/file3.txt");
 
         List<CompletableFuture<String>> futures = fileNames.stream()
                 .map(fileName -> CompletableFuture.supplyAsync(() -> readFile(fileName)))
