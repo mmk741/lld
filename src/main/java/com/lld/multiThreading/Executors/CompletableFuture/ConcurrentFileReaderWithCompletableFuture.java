@@ -21,6 +21,7 @@ public class ConcurrentFileReaderWithCompletableFuture {
         CompletableFuture<Void> allFutures = CompletableFuture.allOf(futures.toArray(new CompletableFuture[0]));
 
 
+        //when all future completes then we do thenAccepts and is non blocking
         allFutures.thenAccept(res -> {
             for (CompletableFuture<String> future : futures) {
                 try {

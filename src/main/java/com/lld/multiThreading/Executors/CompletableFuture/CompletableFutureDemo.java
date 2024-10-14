@@ -1,9 +1,31 @@
 package com.lld.multiThreading.Executors.CompletableFuture;
 
 import java.util.concurrent.CompletableFuture;
+import java.util.function.Supplier;
+
+//FutureDemo
+//Executor submit function return Future
+//        get
+//         isDone
+//        isCancelled
+//
+//CompletableFuture (by default fork join pool is used )
+//supplyAsync(Supplier<T>) supplyAsync(Supplier<T>,Executor)  // returns CompletableFuture
+//thenRun //this tun when CompletableFuture finish success or exception
+//thenApply(same thread is used which done prev oprn), thenApplyAsync(diff thread is used order not guarantee fork join pool)    //oprn on prev Async oprn and return
+//thenCompose thenComposeAsync  //if curr task is dependen of prev task res
+//thenAccept thenAcceptAsync //end stage of chain of async oprn return nothing ..main thread wont wait for this
+//        then combine , thenCombineAsync //combine result of 2 completable future
+//allOf // CompletableFuture.allOf(future1, future, future2, future3, combinedFuture).join();
+        // It takes an array or varargs of CompletableFuture instances and returns a new CompletableFuture<Void>.
+        //it is completed when all of the future inside it are completed
+//        exceptionally  //to handle exception
+
+
 
 public class CompletableFutureDemo {
     public static void main(String[] args) {
+
         // supplyAsync
         CompletableFuture<Integer> future1 = CompletableFuture.supplyAsync(() -> {
             // Simulate a long-running computation
