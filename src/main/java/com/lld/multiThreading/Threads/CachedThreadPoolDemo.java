@@ -10,6 +10,8 @@ public class CachedThreadPoolDemo {
 
         public static void main(String[] args) throws InterruptedException {
             // Create a cached thread pool
+            //task queue can contain one task at max if all thread busy then new thread is created and task assigned to thread
+            //if a thread is idle for more than 60 s it will be killed.it auto scale
             ExecutorService executor = Executors.newCachedThreadPool();
 
 

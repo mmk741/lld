@@ -1,4 +1,5 @@
 package com.lld.multiThreading.ConcurrentCollections;
+import java.util.HashMap;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -7,7 +8,9 @@ public class ConcurrentHashmapDemo {
     private static final int NUM_THREADS = 5;
     private static final int NUM_INSERTIONS = 100;
 
-    private static ConcurrentHashMap<String, Integer> hashMap = new ConcurrentHashMap<>();
+//    private static ConcurrentHashMap<String, Integer> hashMap = new ConcurrentHashMap<>();
+      private static HashMap<String, Integer> hashMap = new HashMap<>();
+
 
 
     public static void main(String[] args) throws InterruptedException {

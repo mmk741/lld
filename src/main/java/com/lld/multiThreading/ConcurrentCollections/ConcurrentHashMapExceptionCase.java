@@ -1,12 +1,14 @@
 package com.lld.multiThreading.ConcurrentCollections;
 
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class ConcurrentHashMapExceptionCase {
     public static void main(String[] args) {
-            Map<String, Integer> map = new ConcurrentHashMap<>();
+//            Map<String, Integer> map = new ConcurrentHashMap<>();
+        Map<String, Integer> map = new HashMap<>();
             map.put("one", 1);
             map.put("two", 2);
             map.put("three", 3);

@@ -57,7 +57,7 @@ public class FutureDemo {
                 while (!f1.isDone()) {
                     System.out.println("Waiting for first task to complete.");
                 }
-                result = f1.get();
+                result = f1.get();//it is blocking call
             } catch (ExecutionException ee) {
                 System.out.println("Something went wrong.");
             }

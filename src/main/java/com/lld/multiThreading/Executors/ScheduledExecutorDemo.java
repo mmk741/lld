@@ -9,7 +9,7 @@ import java.util.concurrent.TimeUnit;
 This program demonstrates the usage of the ScheduledExecutorService to schedule tasks to run periodically at fixed intervals.
  */
 
-public class ScheduledExecutorDemo {
+public class  ScheduledExecutorDemo {
     public static void main(String[] args) {
         ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(3); //Creating a ScheduledExecutorService with 3 threads
 
@@ -26,7 +26,7 @@ public class ScheduledExecutorDemo {
 
 
 
-        scheduler.scheduleAtFixedRate(()->{
+        scheduler.scheduleWithFixedDelay(()->{
             long currentTimeSeconds=System.currentTimeMillis()/1000;
             System.out.println("Task with fixed delay executed at:"+currentTimeSeconds+" seconds");
             try{
