@@ -1,10 +1,12 @@
 package com.lld.multiThreading.threadPoolExecutor;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.*;
 
 public class ThreadPoolExecutorTester {
 
-    public static void main(String[] args)  {
+    public static void main(String[] args) throws InterruptedException {
 
         ThreadPoolExecutor threadPoolExecutor=new ThreadPoolExecutor(2,5,1,
                 TimeUnit.MINUTES, new ArrayBlockingQueue<>(10),new CustomThreadFactory(), new CustomRejectedHandler());
@@ -41,8 +43,8 @@ public class ThreadPoolExecutorTester {
 //        } catch (ExecutionException e) {
 //            throw new RuntimeException(e);
 //        }
-//
-//        //UseCase2 we pass list from outside and thread modifies it as Runnable do not return
+
+        //UseCase2 we pass list from outside and thread modifies it as Runnable do not return
 //        List<Integer> output =new ArrayList<>();
 //        Future<List<Integer>> task2_with_runnable = threadPoolExecutor.submit(() -> {
 //            output.add(100);
@@ -55,8 +57,8 @@ public class ThreadPoolExecutorTester {
 //        } catch (ExecutionException e) {
 //            throw new RuntimeException(e);
 //        }
-//
-//        //UseCase3 callable return so list is created inside and returned
+
+        //UseCase3 callable return so list is created inside and returned
 //        Future<List<Integer>> task3_with_callable = threadPoolExecutor.submit(() -> {
 //            System.out.println("Task3 with callable");
 //            List<Integer> output2 = new ArrayList<>();

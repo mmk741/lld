@@ -12,11 +12,11 @@ public class OddEvenPrinter {
             @Override
             public void run() {
                 while (sharedcount <= 50) {
-//                    synchronized (lock) {
+                    synchronized (lock) {
 
                         if (sharedcount % 2 != 0) {
                             try {
-//                                lock.wait();
+                                lock.wait();
                                 Thread.sleep(2000);
                             } catch (InterruptedException ex) {
                                 throw new RuntimeException(ex);
@@ -24,31 +24,31 @@ public class OddEvenPrinter {
                         }
                         System.out.println(Thread.currentThread().getName() + " : " + sharedcount);
                         sharedcount++;
-//                        lock.notifyAll();
+                        lock.notifyAll();
                     }
                 }
-//            }
+            }
         });
 
         Runnable oddTask = new Thread(new Runnable() {
             public void run() {
                 while (sharedcount <= 50) {
-//                    synchronized (lock) {
+                    synchronized (lock) {
 
                         if (sharedcount % 2 != 1) {
                             try {
                                 Thread.sleep(2000);
-//                                lock.wait();
+                                lock.wait();
                             } catch (InterruptedException ex) {
                                 throw new RuntimeException(ex);
                             }
                         }
                         System.out.println(Thread.currentThread().getName() + " : " + sharedcount);
                         sharedcount++;
-//                        lock.notifyAll();
+                        lock.notifyAll();
                     }
                 }
-//            }
+            }
 
         }, "oddrunner");
 
