@@ -17,6 +17,7 @@ public class ThreeThreadPrintAlternate {
 //        t2.start();
 //        t3.start();
 
+        //use executorService.shutdown(); to terminate code else code will keep running
         //Executor service
         ExecutorService executorService = Executors.newFixedThreadPool(3);
         executorService.submit(new Printer(lock,10,1));
