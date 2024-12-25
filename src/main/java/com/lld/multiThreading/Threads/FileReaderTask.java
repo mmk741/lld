@@ -31,7 +31,7 @@ public class FileReaderTask implements Callable {
 
             try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
                 String line;
-                while ((line = br.readLine()) != null) {
+                while ( (line = br.readLine()) != null) {
                     Thread.sleep(4000);
                     System.out.println(Thread.currentThread().getName() + ": reads line  " + line);
                 }

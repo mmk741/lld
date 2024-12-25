@@ -1,9 +1,6 @@
 package com.lld.multiThreading.Threads;
 
-import java.util.concurrent.LinkedBlockingQueue;
-import java.util.concurrent.ThreadFactory;
-import java.util.concurrent.ThreadPoolExecutor;
-import java.util.concurrent.TimeUnit;
+import java.util.concurrent.*;
 
 /*
  *
@@ -23,7 +20,7 @@ public class CustomThreadFactoryDemo {
 
         ThreadFactory threadFactory = new CustomThreadFactory();
         // Creating a ThreadPoolExecutor with custom configuration
-        ThreadPoolExecutor executor = new ThreadPoolExecutor(
+        ExecutorService executor = new ThreadPoolExecutor(
             3, //core pool size
             5,   //maximum pool size
             30,  //keep-alive time

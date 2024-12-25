@@ -2,6 +2,7 @@ package com.lld.creational.factory.simpleFactory;
 
 public class ShapeFactory {
 
+    //enum can be used in method input
     public static Shape getShape(String name) {
         if (name.equalsIgnoreCase("circle")) {
             return new Circle();

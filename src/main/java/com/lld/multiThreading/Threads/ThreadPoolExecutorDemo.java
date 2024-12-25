@@ -9,6 +9,14 @@ public class ThreadPoolExecutorDemo {
         ExecutorService executor = Executors.newFixedThreadPool(3);
 
         // Submit tasks for execution
+        /*
+        *    difference between the submit() and execute() methods in the ExecutorService lies
+        *     in their return types and how they handle exceptions
+        *
+        *       submit()  -> return future object , use for callable task , exception is captured in future
+        *       execute   -> return void   , fire and forget task callable task , through exception
+        *
+        * */
         for (int i = 1; i <= 100  ; i++) {
             int taskNumber = i;
             executor.execute(() -> {
@@ -16,7 +24,7 @@ public class ThreadPoolExecutorDemo {
             });
         }
 
-        // Shutdown the executor when tasks are done
+        // Shutdown the executor when tasks are done if shutdown is not done code will not stop
        executor.shutdown();
     }
 }

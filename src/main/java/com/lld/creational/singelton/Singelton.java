@@ -81,6 +81,7 @@ class PrivateStaticInnerClassSingelton {
 
     }
 
+//    inner class is not loaded until it's actually needed. This ensures lazy initialization, meaning the instance of the Singleton is only created when it is first accessed.
     private  static class Helper{
         private static  PrivateStaticInnerClassSingelton instance=new PrivateStaticInnerClassSingelton();
     }

@@ -40,7 +40,8 @@ class Printers implements Runnable {
 
                 while (thNo != ceth) {
                     try {
-                        lock.wait();
+                        lock.wait();//or wait() both we do same
+
                     } catch (InterruptedException e) {
                         throw new RuntimeException(e);
                     }

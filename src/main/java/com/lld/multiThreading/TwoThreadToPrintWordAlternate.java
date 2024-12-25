@@ -1,5 +1,12 @@
 package com.lld.multiThreading;
 
+
+/*
+*   1. common lock
+*   2. thread identification ie threadNumber
+*   3. static current Running thread as all thread chang is common to all
+*
+* */
 public class TwoThreadToPrintWordAlternate {
 
     public static void main(String[] args) {

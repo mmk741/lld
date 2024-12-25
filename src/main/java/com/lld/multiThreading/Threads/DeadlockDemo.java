@@ -24,7 +24,7 @@ public class DeadlockDemo {
 
 
         Thread harsha = new Thread(() -> {
-            synchronized (harsha_key){
+            synchronized (varsha_key){
                 System.out.println("Harsha has acquired varsha's key");
                 try {
                     System.out.println("Harsha sleeping fr 3 secs");
@@ -35,7 +35,7 @@ public class DeadlockDemo {
                 }
                 System.out.println("harsha woke up");
 
-                synchronized (varsha_key){
+                synchronized (harsha_key){
                     System.out.println("harsha has got her key");
                 }
             }
