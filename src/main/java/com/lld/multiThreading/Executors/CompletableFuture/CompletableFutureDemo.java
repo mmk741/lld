@@ -5,15 +5,15 @@ import java.util.function.Supplier;
 
 //FutureDemo
 //Executor submit function return Future
-//        get
+//         get
 //         isDone
-//        isCancelled
+//         isCancelled
 //
 //CompletableFuture (by default fork join pool is used )
 //supplyAsync(Supplier<T>) supplyAsync(Supplier<T>,Executor)  // returns CompletableFuture
-//thenRun //this tun when CompletableFuture finish success or exception
-//thenApply(same thread is used which done prev oprn), thenApplyAsync(diff thread is used order not guarantee fork join pool)    //oprn on prev Async oprn and return
-//thenCompose thenComposeAsync  //if curr task is dependen of prev task res
+//CompletableFuture<Void> thenRun(Runnable action)  //this tun when CompletableFuture finish success or exception
+//thenApply(same thread is used which done prev oprn), thenApplyAsync(diff thread is used order not guarantee fork join pool)    //apply transformation to previous result ..oprn on prev Async oprn and return
+//thenCompose thenComposeAsync  //if curr task is dependen of prev task res ...when function returs a completableFuture the we use compose as it will fllaten the completableFuture
 //thenAccept thenAcceptAsync //end stage of chain of async oprn return nothing ..main thread wont wait for this
 //        then combine , thenCombineAsync //combine result of 2 completable future
 //allOf // CompletableFuture.allOf(future1, future, future2, future3, combinedFuture).join();
@@ -37,9 +37,10 @@ public class CompletableFutureDemo {
             return 10;
         });
 
-        // Use the result of the CompletableFuture
+        // Use the result of the CompletableFuture and return nothing
         future1.thenAccept(result -> System.out.println("Result: " + result));
 
+        //we use runAsync when result is void else we use supplyAsync
         CompletableFuture<Void> future = CompletableFuture.runAsync(() -> {
             //Simulate a long-running task
             try {
@@ -50,18 +51,17 @@ public class CompletableFutureDemo {
             System.out.println("Task completed");
         });
 
+        //it run when completableFuture is finished either success or with exception
         future.thenRun(() -> System.out.println("Callback after task completion"));
 
 
         // thenApply
         CompletableFuture<Integer> future2 = future1.thenApply(result ->  20 * result);
-
+        //join() is use to block and wait for completion of completable future
         System.out.println("future 2: " +future2.join());
 
 
         // thenCompose
-
-
         CompletableFuture<Integer> future3 = future1.thenCompose(result -> {
             // Simulate another asynchronous operation dependent on the result of stage1
             System.out.println("Stage 2 is running with result from stage 1: " + result);
