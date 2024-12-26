@@ -2,6 +2,18 @@ package com.lld.hashMap;
 
 import java.util.Objects;
 
+/*
+*  Node(key value , next)
+*
+*   put()
+*   get()
+*   remove()
+*   resize()
+*   hash()
+*
+*
+*
+* */
 public class HashMap<K, V> {
 
     // Node class for chaining in case of collisions
@@ -26,7 +38,7 @@ public class HashMap<K, V> {
     }
 
     private int hash(K key) {
-
+        //hashcode may return positive or negative value
         return (key == null) ? 0 : Math.abs(key.hashCode() % table.length);
     }
 
