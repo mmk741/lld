@@ -2,6 +2,7 @@ package com.lld.multiThreading.Executors.CompletableFuture;
 
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Supplier;
+import java.util.stream.Stream;
 
 //FutureDemo
 //Executor submit function return Future
@@ -40,6 +41,7 @@ public class CompletableFutureDemo {
         // Use the result of the CompletableFuture
         future1.thenAccept(result -> System.out.println("Result: " + result));
 
+        //used when we dont have any return from async task
         CompletableFuture<Void> future = CompletableFuture.runAsync(() -> {
             //Simulate a long-running task
             try {

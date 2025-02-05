@@ -2,6 +2,7 @@ package com.lld.stream;
 import java.util.*;
 import java.util.stream.Collectors;
 
+
 public class App {
 
     static List<Employee> employeeList = new ArrayList<>();
@@ -16,7 +17,12 @@ public class App {
         // QnA
 //        1. List all distinct project in non-ascending order.
         System.out.println("************************1************************");
-
+//        List<String> distinctProject = employeeList.stream().flatMap((employee) -> employee.getProjects().stream())
+//                .map(x->x.getName())
+//                .distinct()
+//                .sorted((x, y) -> y.compareTo(x))
+//                .collect(Collectors.toList());
+        //OR
         List<String> distinctProject = employeeList.stream().flatMap((employee) -> employee.getProjects().stream())
                 .distinct()
                 .sorted((x, y) -> y.getName().compareTo(x.getName()))
@@ -77,7 +83,8 @@ thirdHighSalary.forEach(e->System.out.println(e.toString()));
 //
 //        9. Count of total laptops assigned to the employees.
         System.out.println("************************9************************");
-        long count = employeeList.stream().mapToInt(Employee::getTotalLaptopsAssigned).sum();
+        long count =  employeeList.stream().map(x->x.getTotalLaptopsAssigned()).reduce((x,y)->x+y).get();
+//        long count = employeeList.stream().mapToInt(Employee::getTotalLaptopsAssigned).sum();
         System.out.println(count);
 
 //
