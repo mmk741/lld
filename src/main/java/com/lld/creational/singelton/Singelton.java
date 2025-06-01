@@ -1,5 +1,7 @@
 package com.lld.creational.singelton;
 
+import java.io.Serializable;
+
 public class Singelton {
     public static void main(String[] args) {
         SynchronizedMethodSingelton obj=SynchronizedMethodSingelton.getInstance();
@@ -92,40 +94,39 @@ class PrivateStaticInnerClassSingelton {
         return Helper.instance;
     }
 
-    public final class SafeSingleton implements Serializable, Cloneable {
-        private static final long serialVersionUID = 1L;
 
-        private static volatile SafeSingleton instance;
+}
 
-        private SafeSingleton() {
-            if (instance != null) {
-                throw new RuntimeException("Use getInstance()");
-            }
-        }
+ final class SafeSingleton implements Serializable, Cloneable {
+    private static final long serialVersionUID = 1L;
 
-        public static SafeSingleton getInstance() {
-            if (instance == null) {
-                synchronized (SafeSingleton.class) {
-                    if (instance == null) {
-                        instance = new SafeSingleton();
-                    }
-                }
-            }
-            return instance;
-        }
+    private static volatile SafeSingleton instance;
 
-        // Prevent cloning
-        @Override
-        protected Object clone() throws CloneNotSupportedException {
-            throw new CloneNotSupportedException("Singleton can't be cloned");
-        }
-
-        // Preserve singleton during deserialization
-        protected Object readResolve() {
-            return getInstance();
+    private SafeSingleton() {
+        if (instance != null) {
+            throw new RuntimeException("Use getInstance()");
         }
     }
 
+    public static SafeSingleton getInstance() {
+        if (instance == null) {
+            synchronized (SafeSingleton.class) {
+                if (instance == null) {
+                    instance = new SafeSingleton();
+                }
+            }
+        }
+        return instance;
+    }
 
+    // Prevent cloning
+    @Override
+    protected Object clone() throws CloneNotSupportedException {
+        throw new CloneNotSupportedException("Singleton can't be cloned");
+    }
 
+    // Preserve singleton during deserialization
+    protected Object readResolve() {
+        return getInstance();
+    }
 }
