@@ -1,11 +1,15 @@
-package com.lld.behavorial.chainOfResponsibility;
+package com.lld.behavorial.chainOfResponsibility.v2;
 
 public class Main {
 
     public static void main(String args[]) {
 
         //we pass next log processor while creating object
-        LogProcessor logObject = new InfoLogProcessor(new DebugLogProcessor(new ErrorLogProcessor(null)));
+        LogProcessor logObjectHead = new InfoLogProcessor();
+        LogProcessor logObject = logObjectHead
+                .setNext(new DebugLogProcessor())
+                .setNext(new ErrorLogProcessor());
+
 
 
 //        Execution Steps:
@@ -21,9 +25,9 @@ public class Main {
 //
 //        Checks logLevel == ERROR → true, prints:
 
-        logObject.log(LogProcessor.ERROR, "exception happens");
-        logObject.log(LogProcessor.DEBUG, "need to debug this ");
-        logObject.log(LogProcessor.INFO, "just for info ");
+        logObjectHead.log(LogProcessor.ERROR, "exception happens");
+        logObjectHead.log(LogProcessor.DEBUG, "need to debug this ");
+        logObjectHead.log(LogProcessor.INFO, "just for info ");
 
     }
 }

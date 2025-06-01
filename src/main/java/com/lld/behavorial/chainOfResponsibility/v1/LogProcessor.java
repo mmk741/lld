@@ -1,4 +1,4 @@
-package com.lld.behavorial.chainOfResponsibility;
+package com.lld.behavorial.chainOfResponsibility.v1;
 
 public abstract class LogProcessor {
 

@@ -1,18 +1,16 @@
-package com.lld.behavorial.chainOfResponsibility;
+package com.lld.behavorial.chainOfResponsibility.v2;
 
 public class InfoLogProcessor extends LogProcessor{
 
-    InfoLogProcessor(LogProcessor nexLogProcessor){
-        super(nexLogProcessor);
-    }
+
 
     public void log(int logLevel,String message){
 
         if(logLevel == INFO) {
             System.out.println("INFO: " + message);
-        } else{
+        } else if (nextLoggerProcessor!=null) {
 
-            super.log(logLevel, message);
+            nextLoggerProcessor.log(logLevel, message);
         }
 
     }
