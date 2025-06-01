@@ -2,6 +2,7 @@ package com.lld.structural.flyweight;
 
 public class RoboticDog implements IRobot {
     private String type;
+    //intrinsic large data
     private Sprites body; //small 2d bitmap (graphic element)
 
     RoboticDog(String type, Sprites body){
@@ -17,6 +18,7 @@ public class RoboticDog implements IRobot {
         return body;
     }
 
+    //extrinsic data are taken in function arguments
     @Override
     public void display(int x, int y) {
 
