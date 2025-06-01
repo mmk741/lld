@@ -1,6 +1,7 @@
 package com.lld.creational.singelton;
 
 import java.io.Serializable;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 public class Singelton {
     public static void main(String[] args) {
@@ -101,9 +102,10 @@ class PrivateStaticInnerClassSingelton {
     private static final long serialVersionUID = 1L;
 
     private static volatile SafeSingleton instance;
+     private static final AtomicBoolean instanceCreated = new AtomicBoolean(false);
 
     private SafeSingleton() {
-        if (instance != null) {
+        if (!instanceCreated.compareAndSet(false, true)) {
             throw new RuntimeException("Use getInstance()");
         }
     }
@@ -126,6 +128,7 @@ class PrivateStaticInnerClassSingelton {
     }
 
     // Preserve singleton during deserialization
+//    Java will call readResolve() after deserialization, and replace the deserialized object with the already existing Singleton.
     protected Object readResolve() {
         return getInstance();
     }
