@@ -7,7 +7,7 @@ public class Singelton {
 }
 
  class EagerSingelton {
-    private static EagerSingelton instance=new EagerSingelton();
+    private static final EagerSingelton instance=new EagerSingelton();
     private EagerSingelton(){
 
     }
@@ -91,4 +91,41 @@ class PrivateStaticInnerClassSingelton {
 
         return Helper.instance;
     }
+
+    public final class SafeSingleton implements Serializable, Cloneable {
+        private static final long serialVersionUID = 1L;
+
+        private static volatile SafeSingleton instance;
+
+        private SafeSingleton() {
+            if (instance != null) {
+                throw new RuntimeException("Use getInstance()");
+            }
+        }
+
+        public static SafeSingleton getInstance() {
+            if (instance == null) {
+                synchronized (SafeSingleton.class) {
+                    if (instance == null) {
+                        instance = new SafeSingleton();
+                    }
+                }
+            }
+            return instance;
+        }
+
+        // Prevent cloning
+        @Override
+        protected Object clone() throws CloneNotSupportedException {
+            throw new CloneNotSupportedException("Singleton can't be cloned");
+        }
+
+        // Preserve singleton during deserialization
+        protected Object readResolve() {
+            return getInstance();
+        }
+    }
+
+
+
 }
