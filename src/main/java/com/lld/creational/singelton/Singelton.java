@@ -105,7 +105,7 @@ class PrivateStaticInnerClassSingelton {
      private static final AtomicBoolean instanceCreated = new AtomicBoolean(false);
 
     private SafeSingleton() {
-        if (!instanceCreated.compareAndSet(false, true)) {
+        if (!instanceCreated.compareAndSet(false, true) || instance != null) {
             throw new RuntimeException("Use getInstance()");
         }
     }

@@ -1,10 +1,7 @@
-package com.lld.multiThreading;
-
-import java.util.LinkedList;
-import java.util.Queue;
-import java.util.concurrent.*;
+package com.lld.multiThreading.printOddEvenUsingTwoThread.v1;
 
 //odd even printer
+//below we made class for share object also you can do by taking static share data like in fizz buzz problem
 public class Practise {
     public static void main(String[] args) {
         Object obj=new Object();
@@ -18,9 +15,6 @@ public class Practise {
 
 
     }
-
-
-
 }
 
 class PrinterPractice implements Runnable {
@@ -41,7 +35,7 @@ class PrinterPractice implements Runnable {
 
         while(numberToPrint<10) {
         synchronized (lock) {
-            while (th.equals(cstate.state)) {
+            while (!th.equals(cstate.state)) {
                 try {
                     lock.wait();
                 } catch (InterruptedException e) {
