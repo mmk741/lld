@@ -19,6 +19,7 @@ public class ProducerConsumerProblem {
                 System.out.println(x);
             }
         });
+
         Thread producert2=new Thread(()->{
             for(int i=0;i<10;i++){
                 int x= 0;
@@ -30,6 +31,7 @@ public class ProducerConsumerProblem {
                 System.out.println(x);
             }
         });
+
         //creating consumer to consume item from queue
         Thread consumert2=new Thread(()->{
             for(int i=0;i<10;i++) {

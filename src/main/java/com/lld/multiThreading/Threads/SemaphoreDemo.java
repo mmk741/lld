@@ -2,6 +2,7 @@ package com.lld.multiThreading.Threads;
 
 import java.util.concurrent.Semaphore;
 
+
 public class SemaphoreDemo {
 
         private static final int NUM_THREADS = 5;

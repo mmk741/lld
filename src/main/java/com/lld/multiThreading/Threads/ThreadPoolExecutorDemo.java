@@ -6,6 +6,7 @@ import java.util.concurrent.Executors;
 public class ThreadPoolExecutorDemo {
     public static void main(String[] args) {
         // Create a ThreadPoolExecutor with a fixed pool size of 3
+
         ExecutorService executor = Executors.newFixedThreadPool(3);
 
         // Submit tasks for execution

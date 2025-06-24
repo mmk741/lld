@@ -4,9 +4,12 @@ public class VolatileExample {
     private static volatile int sharedCounter = 0;
     public static void main(String[] args) {
         // Creating multiple threads to increment the shared counter
+        Object lock = new Object();
         Runnable volatileTask = () -> {
             for (int i = 0; i < 10000; i++) {
-                sharedCounter++; // Incrementing a volatile variable
+                synchronized (lock) {
+                    sharedCounter++; // Incrementing a volatile variable
+                }
             }
         };
         Thread thread1 = new Thread(volatileTask);
