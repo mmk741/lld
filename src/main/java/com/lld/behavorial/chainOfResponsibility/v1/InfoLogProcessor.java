@@ -12,7 +12,7 @@ public class InfoLogProcessor extends LogProcessor{
             System.out.println("INFO: " + message);
         } else{
 
-            super.log(logLevel, message);
+            nextLoggerProcessor.log(logLevel, message);
         }
 
     }

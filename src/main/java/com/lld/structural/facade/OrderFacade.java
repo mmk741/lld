@@ -1,6 +1,7 @@
 package com.lld.structural.facade;
 
-public class OrderFacade {
+public class
+OrderFacade {
     private InventorySystem inventorySystem;
     private PaymentSystem paymentSystem;
 

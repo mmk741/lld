@@ -14,10 +14,11 @@ public abstract class LogProcessor {
 
     }
 
-    public void log(int logLevel, String message) {
-
-        if (nextLoggerProcessor != null) {
-            nextLoggerProcessor.log(logLevel, message);
-        }
-    }
+    public abstract void log(int logLevel, String message);
+//    {
+//
+//        if (nextLoggerProcessor != null) {
+//            nextLoggerProcessor.log(logLevel, message);
+//        }
+//    }
 }

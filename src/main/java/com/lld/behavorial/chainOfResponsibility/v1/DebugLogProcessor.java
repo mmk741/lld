@@ -12,7 +12,7 @@ public class DebugLogProcessor extends LogProcessor{
             System.out.println("DEBUG: " + message);
         } else{
 
-            super.log(logLevel, message);
+            nextLoggerProcessor.log(logLevel, message);
         }
 
     }
