@@ -8,10 +8,12 @@ import java.util.function.Supplier;
 //        get
 //         isDone
 //        isCancelled
+//         cancel
 //
 //CompletableFuture (by default fork join pool is used )
-//supplyAsync(Supplier<T>) supplyAsync(Supplier<T>,Executor)  // returns CompletableFuture
-//CompletableFuture<Void> thenRun(Runnable action)  //this tun when CompletableFuture finish success or exception
+//supplyAsync(Supplier<T>) supplyAsync(Supplier<T>,Executor)  // returns CompletableFuture with result
+//runAsync(Runnable) //returns CompletableFuture with void
+//CompletableFuture<Void> thenRun(Runnable action) // Runs the Runnable action only if the original CompletableFuture completes normally (i.e., no exception). Returns a new CompletableFuture<Void> for further chaining
 //thenApply(same thread is used which done prev oprn), thenApplyAsync(diff thread is used order not guarantee fork join pool)    //apply transformation to previous result ..oprn on prev Async oprn and return
 //thenCompose thenComposeAsync  //if curr task is dependen of prev task res ...when function returs a completableFuture the we use compose as it will fllaten the completableFuture
 //thenAccept thenAcceptAsync //end stage of chain of async oprn return nothing ..main thread wont wait for this
@@ -20,6 +22,57 @@ import java.util.function.Supplier;
         // It takes an array or varargs of CompletableFuture instances and returns a new CompletableFuture<Void>.
         //it is completed when all of the future inside it are completed
 //        exceptionally  //to handle exception
+
+
+/*
+========================= ✅ ASYNC HANDLING IN JAVA =========================
+
+1️⃣ Future (Classic)
+- Returned by ExecutorService.submit() ..execute returns void
+- future.get()           → Blocks and returns result
+- future.isDone()        → Checks if task is completed
+- future.isCancelled()   → Checks if cancelled
+- future.cancel(true)    → Cancels task (may interrupt)
+
+2️⃣ CompletableFuture Creation
+- supplyAsync(Supplier<T>)                   → Async task with result
+- supplyAsync(Supplier<T>, Executor)         → Same, custom thread pool
+- runAsync(Runnable)                         → Async task without result (returns CompletableFuture<Void>)
+
+3️⃣ Chaining Tasks
+- thenRun(Runnable)                          →  Runs the Runnable action only if the original CompletableFuture completes normally (i.e., no exception). Returns a new CompletableFuture<Void> for further chaining || use for side-effect task (no input, no result) eg logging ,cleanup, if you need to use previous resuly dont use this
+- thenApply(fn) / thenApplyAsync(fn)         → Transforms previous result (sync/async) [sync: same thread is used which done prev oprn] [async:diff thread is used order not guarantee fork join pool]
+- thenCompose(fn) / thenComposeAsync(fn)     → Flattens CompletableFuture of CompletableFuture (dependent async task)
+- thenAccept(fn) / thenAcceptAsync(fn)       → Consumes result, returns void CompletableFuture
+
+4️⃣ Combining Futures
+- thenCombine(f2, combiner)                  → Combine results of two futures
+- thenCombineAsync(...)                      → Same, runs async
+- allOf(f1, f2, f3, ...)                      → Waits for all futures to complete (returns CompletableFuture<Void>)
+
+5️⃣ Error Handling
+- exceptionally(ex -> fallback)              → Catches exception and returns fallback result
+- handle((result, ex) -> ...)                → Handles both result and exception, like try-catch-finally
+
+============================================================================
+*/
+
+/*
+*           | Method                 | Purpose / Use Case                                                                                | When to Use                                                                                    | When **Not** to Use                                                                               |
+| ---------------------- | ------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | --------------------------------------------------------------------                                          |
+| `thenRun(Runnable)`    | Run a side-effect task (no input, no output) **after successful completion**                      | ✅ Use for tasks like logging, cleanup, notifications — where **no result is needed**                            | ❌ Don’t use if you need access to the result of the previous task                         |
+| `thenApply(fn)`        | **Transform** the result in the **same thread**                                                   | ✅ Use when you want to apply a function on the result and **continue with transformed output**                  | ❌ Don’t use for heavy/slow operations — use `thenApplyAsync` instead                      |
+| `thenApplyAsync(fn)`   | Same as above, but runs in **different thread** (default: ForkJoinPool)                           | ✅ Use for **heavy transformations** (e.g., I/O, DB processing) to avoid blocking main thread                    | ❌ Don’t use for light, in-thread operations                                               |
+| `thenCompose(fn)`      | It flattens CompletableFuture<CompletableFuture<T>> into a single CompletableFuture<T>.           | ✅ used when the input is CompletableFuture and the next step also return CompletableFuture so use it to flatten | ❌ Don’t use when next task is not return completable feature — use `thenApply` instead    |
+| `thenComposeAsync(fn)` | Same as `thenCompose`, but in a different thread                                                  | ✅ Use when the next **async task is heavy** and should run in background                                        | ❌ Don’t use for simple dependent chaining within same thread                              |
+| `thenAccept(fn)`       | **Consume** the result (no transformation, just an action)                                        | ✅ Use at the **end of pipeline** to log/save/display the result                                                 | ❌ Don’t use if you want to return/transmit the result                                     |
+| `thenAcceptAsync(fn)`  | Same as above, but runs in a different thread                                                     | ✅ Use when consumption is **time-consuming** or should be offloaded (e.g., save to DB, notify)                  | ❌ Don’t use for cheap actions like simple prints                                          |
+
+*
+*
+*
+* */
+
 
 
 

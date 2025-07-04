@@ -9,9 +9,15 @@ public class CachedThreadPoolDemo {
     static long maxSleepTime = 10000; // 6 seconds
 
         public static void main(String[] args) throws InterruptedException {
-            // Create a cached thread pool
-            //task queue can contain one task at max if all thread busy then new thread is created and task assigned to thread
-            //if a thread is idle for more than 60 s it will be killed.it auto scale
+        /*  Create a cached thread pool
+
+            CachedThreadPool creates a thread pool that:
+                Reuses existing threads if available
+                Creates new threads if all are busy no limit on number of thread
+                Kills idle threads after 60 seconds
+                its task queue size is 0 ie tak is not stored it is picked
+                Auto-scalable and good for many short-lived async tasks
+           */
             ExecutorService executor = Executors.newCachedThreadPool();
 
 
@@ -30,6 +36,7 @@ public class CachedThreadPoolDemo {
 
             // Wait for all tasks to complete
             try {
+//                Wait up to 60 seconds for all tasks in the executor to finish. If they finish earlier, proceed immediately. If not, timeout after 60 seconds.
                 executor.awaitTermination(60, TimeUnit.SECONDS);
             } catch (InterruptedException e) {
                 e.printStackTrace();

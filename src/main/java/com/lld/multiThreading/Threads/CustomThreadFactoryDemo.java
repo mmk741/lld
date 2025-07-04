@@ -32,6 +32,10 @@ public class CustomThreadFactoryDemo {
         //Submitting tasks to the thread pool
         for (int i = 1; i <= 10; i++) {
             final int taskId = i;
+            /*
+            Use submit() when you want control or feedback,
+            Use execute() when you just want to fire and forget.
+            * */
             executor.submit(() -> {
                 System.out.println("Task " + taskId + " executed by thread: " + Thread.currentThread().getName());
                 try {
