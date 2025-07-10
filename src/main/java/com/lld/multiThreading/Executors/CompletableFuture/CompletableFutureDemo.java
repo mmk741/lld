@@ -36,11 +36,11 @@ import java.util.function.Supplier;
 
 2️⃣ CompletableFuture Creation
 - supplyAsync(Supplier<T>)                   → Async task with result
-- supplyAsync(Supplier<T>, Executor)         → Same, custom thread pool
+- supplyAsync(Supplier<T>, Executor)         → Same, but have custom thread pool given by user
 - runAsync(Runnable)                         → Async task without result (returns CompletableFuture<Void>)
 
 3️⃣ Chaining Tasks
-- thenRun(Runnable)                          →  Runs the Runnable action only if the original CompletableFuture completes normally (i.e., no exception). Returns a new CompletableFuture<Void> for further chaining || use for side-effect task (no input, no result) eg logging ,cleanup, if you need to use previous resuly dont use this
+- thenRun(Runnable)                          →  Runs the Runnable action only if the original CompletableFuture completes normally (i.e., no exception). Returns a new CompletableFuture<Void> for further chaining || use for side-effect task (no input, no result) eg logging ,cleanup, if you need to use previous result then dont use this
 - thenApply(fn) / thenApplyAsync(fn)         → Transforms previous result (sync/async) [sync: same thread is used which done prev oprn] [async:diff thread is used order not guarantee fork join pool]
 - thenCompose(fn) / thenComposeAsync(fn)     → Flattens CompletableFuture of CompletableFuture (dependent async task)
 - thenAccept(fn) / thenAcceptAsync(fn)       → Consumes result, returns void CompletableFuture
